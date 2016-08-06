@@ -19,8 +19,6 @@ import libcore.io.DiskLruCache;
 
 /**
  * AbsListView的适配器，负责异步从网络上下载图片展示在照片墙上。
- * 
- * @author guolin
  */
 public class PhotoWallAdapter extends BaseAdapter
 {
