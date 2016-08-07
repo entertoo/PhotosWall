@@ -4,7 +4,7 @@
 ![](imgs/1.png)
 
 
-### 有两个工具类：
+### 有3个工具类：
 1. DownloadImageListUtil
 
 	简单的网页爬虫，抓取百度的图片
@@ -80,6 +80,9 @@
 			}
 		}
 
-3. Demo请下载源文件，阅读MainActivity + PhotoWallAdapter
+3. imageLoader
+
+
+	结合DiskLruCache、LruCache技术达到三级缓存
 
 4. 细节：本次试用的是GridView制作图片墙，每个图片的大小长宽都不一样，所以对图片进行了简单的处理：缩放截取正中部分后的位图，使图片显示在屏幕中为正方形且不会变形，看起来好看些。
