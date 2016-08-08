@@ -41,7 +41,7 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mDownloadImageListUtil = new DownloadImageListUtil();
-		
+
 		initView();
 		initEvent();
 		initData();
@@ -57,14 +57,15 @@ public class MainActivity extends Activity
 		mImageThumbSpacing = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
 		// 监听获取图片的宽高
 		mPhotoWallView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-	
+
 			@Override
 			public void onGlobalLayout() {
 				// 计算列数
-				final int numColumns = (int) Math.floor(mPhotoWallView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+				final int numColumns = (int) Math
+						.floor(mPhotoWallView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
 				if (numColumns > 0) {
 					int columnWidth = (mPhotoWallView.getWidth() / numColumns) - mImageThumbSpacing;
-					mPhotoWallAdapter.setItemHeight(columnWidth);
+					mPhotoWallAdapter.setItemSize(columnWidth, columnWidth * 2, columnWidth * 2, columnWidth);
 					mPhotoWallView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 				}
 			}
@@ -72,7 +73,7 @@ public class MainActivity extends Activity
 	}
 
 	public void initData() {
-		if(mPhotoWallAdapter == null){
+		if (mPhotoWallAdapter == null) {
 			mPhotoWallAdapter = new PhotoesWallAdapter(this, 0, mImageUrlList, mPhotoWallView);
 		}
 		mPhotoWallView.setAdapter(mPhotoWallAdapter);
@@ -89,7 +90,7 @@ public class MainActivity extends Activity
 				final ArrayList<String> imageUrlList = mDownloadImageListUtil.ParseHtmlToImgList(url, regex);
 				System.out.println("--------------------------------");
 				System.out.println("mImageUrlList: " + imageUrlList);
-				
+
 				runOnUiThread(new Runnable() {
 					public void run() {
 						mImageUrlList.addAll(imageUrlList);
@@ -111,6 +112,7 @@ public class MainActivity extends Activity
 		super.onDestroy();
 		// 退出程序时结束所有的下载任务
 		mPhotoWallAdapter.mImageLoader.cancelAllTasks();
+		mPhotoWallAdapter.mImageLoader.stopCache();
 	}
 
 }

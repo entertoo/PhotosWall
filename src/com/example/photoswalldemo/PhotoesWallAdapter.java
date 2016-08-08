@@ -36,7 +36,7 @@ public class PhotoesWallAdapter extends BaseAdapter
 	public PhotoesWallAdapter(Context context, int textViewResourceId, List<String> data, AbsListView absListView) {
 		this.imageUrlList = data;
 		this.context = context;
-		mImageLoader = new ImageLoader(context,absListView);
+		mImageLoader = new ImageLoader(context, absListView);
 	}
 
 	@Override
@@ -87,13 +87,14 @@ public class PhotoesWallAdapter extends BaseAdapter
 		ImageView iv;
 	}
 
-	/** 设置item子项的高度 */
-	public void setItemHeight(int height) {
-		if (height == mItemHeight) {
-			return;
-		}
+	/** 设置item子项的大小 */
+	public void setItemSize(int height, int maxWidth, int maxHeight, int edgeLength) {
 		mItemHeight = height;
-		mImageLoader.setEdgeLength(height);
+		// 设置图片的最大宽高
+		mImageLoader.setDiskBitmapMaxWidthAndHeight(maxWidth, maxHeight);
+		mImageLoader.setCenterSquare(true);
+		// 设置图片可见正方形边长
+		mImageLoader.setEdgeLength(edgeLength);
 		notifyDataSetChanged();
 	}
 

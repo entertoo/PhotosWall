@@ -6,9 +6,10 @@ import java.util.Set;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.os.AsyncTask;
 import android.util.LruCache;
-import android.widget.AbsListView;
+import android.view.View;
 import android.widget.ImageView;
 import libcore.io.DiskLruCache;
 
@@ -25,28 +26,22 @@ import libcore.io.DiskLruCache;
 public class ImageLoader
 {
 	/** GridView或ListView的实例 */
-	private AbsListView absListView;
-
+	private View view;
+	/** DiskLruCache缓存工具类 */
+	private DiskLruCacheUtil mDiskLruCacheUtil;
 	/** 记录所有正在下载或等待下载的任务 */
 	private Set<BitmapWorkerTask> taskCollection;
-
 	/** 图片缓存技术的核心类，用于缓存所有下载好的图片，在程序内存达到设定值时会将最少最近使用的图片移除掉 */
 	private LruCache<String, Bitmap> mLruCache;
-
 	/** 图片硬盘缓存核心类 */
 	private DiskLruCache mDiskLruCache;
-
 	/** 记录每个子项的高度 */
 	private int edgeLength = 0;
+	/** 是否显示图片正方形区域不变形 */
+	private boolean isCenterSquare = false;
 
-	public void setEdgeLength(int edgeLength) {
-		this.edgeLength = edgeLength;
-	}
-
-	private DiskLruCacheUtil mDiskLruCacheUtil;
-
-	public ImageLoader(Context context, AbsListView absListView) {
-		this.absListView = absListView;
+	public ImageLoader(Context context, View view) {
+		this.view = view;
 		taskCollection = new HashSet<BitmapWorkerTask>();
 		// 获取应用程序最大可用内存
 		int maxMemory = (int) Runtime.getRuntime().maxMemory();
@@ -58,7 +53,7 @@ public class ImageLoader
 				return bitmap.getByteCount();
 			}
 		};
-		mDiskLruCacheUtil = new DiskLruCacheUtil(context);
+		mDiskLruCacheUtil = new DiskLruCacheUtil(context, Config.RGB_565);
 		mDiskLruCache = mDiskLruCacheUtil.doOpen();
 	}
 
@@ -79,10 +74,15 @@ public class ImageLoader
 		// 从缓存文件中获取数据DiskUrlCache
 		bitmap = mDiskLruCacheUtil.doGet(imageUrl, mDiskLruCache);
 		if (imageView != null && bitmap != null) {
-			// 截取图片正方形区域
-			System.out.println("edgeLength1: " + edgeLength);
-			bitmap = centerSquareScaleBitmap(bitmap, edgeLength);
+			if (isCenterSquare) {
+				// 截取图片正方形区域
+				bitmap = centerSquareScaleBitmap(bitmap, edgeLength);
+			}
 			imageView.setImageBitmap(bitmap);
+			if (mLruCache.get(imageUrl) == null) {
+				// 把缓存文件中的数据加入内存中
+				mLruCache.put(imageUrl, bitmap);
+			}
 			// 从缓存中加载数据
 			System.out.println("********从缓存中加载数据********");
 			return;
@@ -101,7 +101,7 @@ public class ImageLoader
 	/** 异步下载图片的任务 */
 	class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap>
 	{
-		/** 图片的URL地址 */
+		// 图片的URL地址
 		private String imageUrl;
 
 		@Override
@@ -109,9 +109,10 @@ public class ImageLoader
 			imageUrl = params[0];
 			mDiskLruCacheUtil.doEdit(imageUrl, mDiskLruCache);
 			Bitmap bitmap = mDiskLruCacheUtil.doGet(imageUrl, mDiskLruCache);
-			// 截取图片正方形区域
-			System.out.println("edgeLength2: " + edgeLength);
-			bitmap = centerSquareScaleBitmap(bitmap, edgeLength);
+			if (isCenterSquare) {
+				// 截取图片正方形区域
+				bitmap = centerSquareScaleBitmap(bitmap, edgeLength);
+			}
 			System.out.println("********从网络获取数据********");
 			if (bitmap != null && imageUrl != null && mLruCache.get(imageUrl) == null) {
 				// 把网络下载的数据加入内存中
@@ -124,20 +125,11 @@ public class ImageLoader
 		protected void onPostExecute(Bitmap bitmap) {
 			super.onPostExecute(bitmap);
 			// 根据Tag找到相应的ImageView控件，将下载好的图片显示出来。
-			ImageView imageView = (ImageView) absListView.findViewWithTag(imageUrl);
+			ImageView imageView = (ImageView) view.findViewWithTag(imageUrl);
 			if (imageView != null && bitmap != null) {
 				imageView.setImageBitmap(bitmap);
 			}
 			taskCollection.remove(this);
-		}
-	}
-
-	/** 取消所有正在下载或等待下载的任务 */
-	public void cancelAllTasks() {
-		if (taskCollection != null) {
-			for (BitmapWorkerTask task : taskCollection) {
-				task.cancel(false);
-			}
 		}
 	}
 
@@ -150,6 +142,50 @@ public class ImageLoader
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/** 获取缓存大小 */
+	public long getCacheSize() {
+		if (mDiskLruCache != null) {
+			long size = mDiskLruCache.size();
+			return size;
+		}
+		return 0;
+	}
+
+	/** 取消所有正在下载或等待下载的任务 */
+	public void cancelAllTasks() {
+		if (taskCollection != null) {
+			for (BitmapWorkerTask task : taskCollection) {
+				task.cancel(false);
+			}
+		}
+	}
+
+	/** 关闭 */
+	public void stopCache() {
+		if (mDiskLruCache != null) {
+			try {
+				mDiskLruCache.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/** 设置图片的最大宽高,最好设置为真实图片的宽高两倍 */
+	public void setDiskBitmapMaxWidthAndHeight(int maxWidth, int maxHeight) {
+		mDiskLruCacheUtil.setMaxWidthAndHeight(maxWidth, maxHeight);
+	}
+
+	/** 设置正方形可视区域边长，如果为true */
+	public void setEdgeLength(int edgeLength) {
+		this.edgeLength = edgeLength;
+	}
+
+	/** 设置是否显示图片正方形区域不变形 */
+	public void setCenterSquare(boolean isCenterSquare) {
+		this.isCenterSquare = isCenterSquare;
 	}
 
 	/**
@@ -167,7 +203,7 @@ public class ImageLoader
 		int widthOrg = bitmap.getWidth();
 		int heightOrg = bitmap.getHeight();
 		if (widthOrg > edgeLength && heightOrg > edgeLength) {
-			// 压缩到一个最小长度是edgeLength的bitmap
+			// 压缩到一个最小长度是edgeLength的bitmap,和原图的比例相等
 			int longerEdge = (int) (edgeLength * Math.max(widthOrg, heightOrg) / Math.min(widthOrg, heightOrg));
 			int scaledWidth = widthOrg > heightOrg ? longerEdge : edgeLength;
 			int scaledHeight = widthOrg > heightOrg ? edgeLength : longerEdge;
@@ -178,11 +214,9 @@ public class ImageLoader
 			} catch (Exception e) {
 				return null;
 			}
-
 			// 从图中截取正中间的正方形部分。
 			int xTopLeft = (scaledWidth - edgeLength) / 2;
 			int yTopLeft = (scaledHeight - edgeLength) / 2;
-
 			try {
 				result = Bitmap.createBitmap(scaledBitmap, xTopLeft, yTopLeft, edgeLength, edgeLength);
 				scaledBitmap.recycle();
