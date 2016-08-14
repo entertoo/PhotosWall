@@ -80,7 +80,7 @@
 			}
 		}
 
-3. imageLoader
+3. ImageLoader
 
 
 	结合DiskLruCache、LruCache技术达到三级缓存
