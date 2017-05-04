@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.photoswalldemo.utils;
+package com.example.photoswalldemo.utility;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;

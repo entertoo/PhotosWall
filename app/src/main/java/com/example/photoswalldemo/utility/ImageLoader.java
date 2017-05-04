@@ -1,4 +1,4 @@
-package com.example.photoswalldemo.utils;
+package com.example.photoswalldemo.utility;
 
 import android.content.Context;
 import android.graphics.Bitmap;

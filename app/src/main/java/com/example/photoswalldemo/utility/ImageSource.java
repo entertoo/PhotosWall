@@ -1,4 +1,4 @@
-package com.example.photoswalldemo.utils;
+package com.example.photoswalldemo.utility;
 
 import android.text.TextUtils;
 
@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * 2016年7月29日 下午6:22:01
  * 
  */
-public class DownloadImageListUtil
+public class ImageSource
 {
 	private boolean isDuRegex;
 
@@ -30,7 +30,7 @@ public class DownloadImageListUtil
 			"<img\\b[^>]*\\bsrc\\b\\s*=\\s*('|\")?([^'\"\n\r\f>]+(\\.jpg)\\b)[^>]*>", "\"objURL\":\"(.*?)\"" };
 
 	// 把图片地址从HTML文件中解析出来
-	public ArrayList<String> ParseHtmlToImgList(String url, String regex) {
+	public ArrayList<String> ParseHtmlToImage(String url, String regex) {
 		// 从网页获取Html数据
 		String html = getImageHtml(url);
 		if (html != null) {

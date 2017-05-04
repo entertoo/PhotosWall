@@ -1,4 +1,4 @@
-package com.example.photoswalldemo.utils;
+package com.example.photoswalldemo.utility;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -19,8 +19,7 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public final class DiskLruCacheUtil
-{
+public final class DiskLruCacheUtil {
 	private Context context;
 	private DiskLruCache diskLruCache;
 	private int length;
@@ -104,7 +103,7 @@ public final class DiskLruCacheUtil
 	}
 
 	/** 获取缓存地址 */
-	public File getDiskCacheDir(Context context, String uniqueName) {
+	private File getDiskCacheDir(Context context, String uniqueName) {
 		String cachePath;
 		if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
 				|| !Environment.isExternalStorageRemovable()) {
@@ -116,7 +115,7 @@ public final class DiskLruCacheUtil
 	}
 
 	/** 获取当前应用版本号 */
-	public int getAppVersion(Context context) {
+	private int getAppVersion(Context context) {
 		try {
 			PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 			return info.versionCode;
@@ -187,7 +186,7 @@ public final class DiskLruCacheUtil
 	}
 
 	/** 并把图片的URL传入到这个方法中，就可以得到对应的key,使用MD5算法对传入的key进行加密并返回 */
-	public String hashKeyForDisk(String key) {
+	private String hashKeyForDisk(String key) {
 		String cacheKey;
 		try {
 			final MessageDigest mDigest = MessageDigest.getInstance("MD5");
@@ -201,8 +200,8 @@ public final class DiskLruCacheUtil
 
 	private String bytesToHexString(byte[] bytes) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < bytes.length; i++) {
-			String hex = Integer.toHexString(0xFF & bytes[i]);
+		for (byte aByte : bytes) {
+			String hex = Integer.toHexString(0xFF & aByte);
 			if (hex.length() == 1) {
 				sb.append('0');
 			}
@@ -212,7 +211,7 @@ public final class DiskLruCacheUtil
 	}
 
 	/** 得到图片字节流再转换成字节数组 */
-	public byte[] readStream(InputStream inStream) throws Exception {
+	private byte[] readStream(InputStream inStream) throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
 		int len;

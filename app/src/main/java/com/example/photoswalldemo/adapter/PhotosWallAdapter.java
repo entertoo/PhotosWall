@@ -1,4 +1,4 @@
-package com.example.photoswalldemo;
+package com.example.photoswalldemo.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -8,7 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.example.photoswalldemo.utils.ImageLoader;
+import com.example.photoswalldemo.R;
+import com.example.photoswalldemo.utility.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
