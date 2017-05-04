@@ -1,0 +1,27 @@
+#Internal package file, do not edit.
+#Thu May 04 10:00:08 CST 2017
+2.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+5.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/resources.arsc
+5.set=ANDROID_RESOURCE
+3.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+6.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+2.set=ANDROID_RESOURCE
+4.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+7.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/layout/activity_main.xml
+7.set=ANDROID_RESOURCE
+count=8
+0.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/AndroidManifest.xml
+5.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+4.set=ANDROID_RESOURCE
+6.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+1.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-nodpi-v4/empty_photo.png
+1.set=ANDROID_RESOURCE
+7.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+2.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/menu/main.xml
+6.set=DEX
+0.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+3.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/layout/photo_layout.xml
+3.set=ANDROID_RESOURCE
+1.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
+4.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/ic_launcher.png
+0.set=ANDROID_RESOURCE

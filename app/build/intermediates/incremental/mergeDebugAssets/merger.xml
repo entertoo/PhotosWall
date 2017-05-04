@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/src/main/assets"/><source path="/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/src/debug/assets"/></dataSet></merger>
