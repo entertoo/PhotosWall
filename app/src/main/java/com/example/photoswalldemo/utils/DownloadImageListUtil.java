@@ -13,14 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author haopi
- * @创建时间 2016年7月29日 下午6:22:01
- * @描述 TODO
- * 
- * 
- * @修改提交者 $Author: chp $
- * @提交时间 $Date: 2016-07-31 10:50:29 +0800 (Sun, 31 Jul 2016) $
- * @当前版本 $Rev: 19 $
+ * haopi
+ * 2016年7月29日 下午6:22:01
  * 
  */
 public class DownloadImageListUtil
@@ -40,10 +34,10 @@ public class DownloadImageListUtil
 		// 从网页获取Html数据
 		String html = getImageHtml(url);
 		if (html != null) {
-			ArrayList<String> imgList = new ArrayList<String>();
+			ArrayList<String> imgList = new ArrayList<>();
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(html);
-			String group = null;
+			String group;
 			if (isBaiduRegex) {
 				while (matcher.find()) {
 					group = matcher.group(1);
@@ -77,9 +71,9 @@ public class DownloadImageListUtil
 				InputStream is = connection.getInputStream();
 				BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 				StringBuilder sb = new StringBuilder();
-				String line = null;
+				String line;
 				while ((line = reader.readLine()) != null) {
-					sb.append(line + '\n');
+					sb.append(line).append('\n');
 				}
 				is.close();
 				return sb.toString();

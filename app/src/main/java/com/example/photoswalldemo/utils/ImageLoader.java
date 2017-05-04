@@ -1,9 +1,5 @@
 package com.example.photoswalldemo.utils;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -11,17 +7,17 @@ import android.os.AsyncTask;
 import android.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 import libcore.io.DiskLruCache;
 
 /**
- * @author haopi
- * @创建时间 2016年8月7日 下午8:46:34
- * @描述 结合DiskLruCache和LruCache对图片进行三级缓存
- * 
- * @修改提交者 $Author$
- * @提交时间 $Date$
- * @当前版本 $Rev$
- * 
+ * haopi
+ * 结合DiskLruCache和LruCache对图片进行三级缓存
+ *
  */
 public class ImageLoader
 {
@@ -42,7 +38,7 @@ public class ImageLoader
 
 	public ImageLoader(Context context, View view) {
 		this.view = view;
-		taskCollection = new HashSet<BitmapWorkerTask>();
+		taskCollection = new HashSet<>();
 		// 获取应用程序最大可用内存
 		int maxMemory = (int) Runtime.getRuntime().maxMemory();
 		int cacheSize = maxMemory / 8;
@@ -99,7 +95,7 @@ public class ImageLoader
 	}
 
 	/** 异步下载图片的任务 */
-	class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap>
+	private class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap>
 	{
 		// 图片的URL地址
 		private String imageUrl;
@@ -195,7 +191,7 @@ public class ImageLoader
 	 *            希望得到的正方形部分的边长
 	 * @return 缩放截取正中部分后的位图。
 	 */
-	public Bitmap centerSquareScaleBitmap(Bitmap bitmap, int edgeLength) {
+	private Bitmap centerSquareScaleBitmap(Bitmap bitmap, int edgeLength) {
 		if (null == bitmap || edgeLength <= 0) {
 			return null;
 		}

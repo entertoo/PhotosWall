@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu May 04 10:00:08 CST 2017
+#Thu May 04 10:38:53 CST 2017
 2.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
 5.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/resources.arsc
 5.set=ANDROID_RESOURCE
@@ -20,8 +20,8 @@ count=8
 2.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/menu/main.xml
 6.set=DEX
 0.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
-3.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/layout/photo_layout.xml
+3.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/ic_launcher.png
 3.set=ANDROID_RESOURCE
 1.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
-4.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/ic_launcher.png
+4.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/res/layout/photo_layout.xml
 0.set=ANDROID_RESOURCE

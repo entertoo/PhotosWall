@@ -1,5 +1,14 @@
 package com.example.photoswalldemo.utils;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,28 +21,20 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.Bitmap.Config;
-import android.os.Environment;
 import libcore.io.DiskLruCache;
 
 /**
  * @author haopi
  * @创建时间 2016年7月31日 上午11:14:05
  * @描述 TODO
- * 
- * 
+ *
+ *
  * @修改提交者 $Author$
  * @提交时间 $Date$
  * @当前版本 $Rev$
- * 
+ *
  */
-public class DiskLruCacheUtil
+public final class DiskLruCacheUtil
 {
 	private Context context;
 	private int mMaxWidth;
@@ -53,7 +54,7 @@ public class DiskLruCacheUtil
 
 	/** 创建一个DiskLruCache的实例 */
 	public DiskLruCache doOpen() {
-		DiskLruCache diskLruCache = null;
+		DiskLruCache diskLruCache;
 		try {
 			// 创建硬件缓存文件
 			File cacheDir = getDiskCacheDir(context, "bitmap");
@@ -66,7 +67,7 @@ public class DiskLruCacheUtil
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return diskLruCache;
+		return null;
 	}
 
 	/** DiskLruCache来进行写入，写入的操作是借助DiskLruCache.Editor这个类完成 */
@@ -82,7 +83,7 @@ public class DiskLruCacheUtil
 					editor.abort();
 				}
 			}
-			// diskLruCache.flush();
+			diskLruCache.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -95,8 +96,7 @@ public class DiskLruCacheUtil
 			DiskLruCache.Snapshot snapShot = diskLruCache.get(key);
 			if (snapShot != null) {
 				InputStream is = snapShot.getInputStream(0);
-				Bitmap bitmap = BitmapFactory.decodeStream(is);
-				return bitmap;
+				return BitmapFactory.decodeStream(is);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -145,12 +145,12 @@ public class DiskLruCacheUtil
 		try {
 			final URL url = new URL(urlString);
 			urlConnection = (HttpURLConnection) url.openConnection();
-			in = new BufferedInputStream(urlConnection.getInputStream(), 8 * 1024);
+			in = new BufferedInputStream(urlConnection.getInputStream(), 1024);
 			// 中间隔断，从源头控制缓存图片的大小，防止OOM
 			byte[] byteData = readStream(in);
 			// 控制需要的图片大小
 			Bitmap suitableBitmap = getSuitableBitmap(byteData);
-			suitableBitmap.compress(CompressFormat.JPEG, 100, new BufferedOutputStream(outputStream, 8 * 1024));
+			suitableBitmap.compress(CompressFormat.JPEG, 80, new BufferedOutputStream(outputStream, 1024));
 
 			// out = new BufferedOutputStream(outputStream, 8 * 1024);
 			// int b;
@@ -208,8 +208,8 @@ public class DiskLruCacheUtil
 	/** 得到图片字节流再转换成字节数组 */
 	public byte[] readStream(InputStream inStream) throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		byte[] buffer = new byte[1024 * 8];
-		int len = 0;
+		byte[] buffer = new byte[1024];
+		int len;
 		while ((len = inStream.read(buffer)) != -1) {
 			bos.write(buffer, 0, len);
 		}

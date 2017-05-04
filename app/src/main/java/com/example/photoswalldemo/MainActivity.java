@@ -1,15 +1,16 @@
 package com.example.photoswalldemo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.photoswalldemo.utils.DownloadImageListUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.GridView;
+
+import com.example.photoswalldemo.utils.DownloadImageListUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author haopi
@@ -33,7 +34,7 @@ public class MainActivity extends Activity
 	private int mImageThumbSize;
 	private int mImageThumbSpacing;
 
-	private List<String> mImageUrlList = new ArrayList<String>();
+	private List<String> mImageUrlList = new ArrayList<>();
 	private DownloadImageListUtil mDownloadImageListUtil;
 
 	@Override
@@ -61,12 +62,11 @@ public class MainActivity extends Activity
 			@Override
 			public void onGlobalLayout() {
 				// 计算列数
-				final int numColumns = (int) Math
-						.floor(mPhotoWallView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+				final int numColumns = (int) Math.floor(mPhotoWallView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
 				if (numColumns > 0) {
 					int columnWidth = (mPhotoWallView.getWidth() / numColumns) - mImageThumbSpacing;
 					mPhotoWallAdapter.setItemSize(columnWidth, columnWidth * 2, columnWidth * 2, columnWidth);
-					mPhotoWallView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+					mPhotoWallView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 				}
 			}
 		});
@@ -80,7 +80,11 @@ public class MainActivity extends Activity
 		getImageListFromNet();
 	}
 
-	public void getImageListFromNet() {
+	public void add(View view){
+		getImageListFromNet();
+	}
+
+	private void getImageListFromNet() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
