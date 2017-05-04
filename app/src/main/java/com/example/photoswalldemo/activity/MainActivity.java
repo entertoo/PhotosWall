@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		imageSource = new ImageSource();
 
 		initView();
 		initEvent();
@@ -74,6 +73,7 @@ public class MainActivity extends Activity {
 			mWallAdapter = new PhotosWallAdapter(this,mImageUrlList, mPhotoWallView);
 		}
 		mPhotoWallView.setAdapter(mWallAdapter);
+		imageSource = new ImageSource();
 		getImageListFromNet(0);
 	}
 
