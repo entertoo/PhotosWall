@@ -9,12 +9,17 @@ import android.widget.GridView;
 
 import com.example.photoswalldemo.utils.DownloadImageListUtil;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity
 {
-	private static final String url = "https://image.baidu.com/search/index?ct=201326592&cl=2&st=-1&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&rps=1&pv=&fm=rs13&word=%E5%A4%B4%E5%83%8F%20%E5%A5%B3%E7%94%9F&oriquery=%E8%90%8C%E5%A5%B3&ofr=%E8%90%8C%E5%A5%B3&hs=2";
+
+	private static final String BASE_URL = "https://image.baidu.com/search/index?ct=201326592&cl=2&st=-1&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&rps=1&pv=&fm=rs8&word=";
+	private String[] mImageWords = { "小清新美女", "大鱼海棠官方壁纸", "天空之城", "千与千寻", "清新美女", "美女壁纸" };
+	private static String url = BASE_URL + URLEncoder.encode("");
+	private static int page = 0;
 
 	/** 用于展示照片墙的GridView */
 	private GridView mPhotoWallView;
@@ -63,28 +68,31 @@ public class MainActivity extends Activity
 			}
 		});
 	}
-	public int dp2px(float dp) {
-		float scale = this.getResources().getDisplayMetrics().density;
-		return (int) (dp * scale + 0.5f);
-	}
 
 	public void initData() {
 		if (mPhotoWallAdapter == null) {
 			mPhotoWallAdapter = new PhotosWallAdapter(this,mImageUrlList, mPhotoWallView);
 		}
 		mPhotoWallView.setAdapter(mPhotoWallAdapter);
-		getImageListFromNet();
+		getImageListFromNet(0);
 	}
 
 	public void add(View view){
-		getImageListFromNet();
+		page++;
+		if(page > mImageWords.length){
+			page = page % mImageWords.length;
+		}
+		getImageListFromNet(page);
 	}
 
-	private void getImageListFromNet() {
+	private void getImageListFromNet(final int i) {
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {mDownloadImageListUtil.setDuRegex(true);
 				String regex = DownloadImageListUtil.regex[2];
+				String word = mImageWords[i];
+				url = BASE_URL + URLEncoder.encode(word);
 				final ArrayList<String> imageUrlList = mDownloadImageListUtil.ParseHtmlToImgList(url, regex);
 				runOnUiThread(new Runnable() {
 					public void run() {

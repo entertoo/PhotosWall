@@ -120,25 +120,23 @@ public final class DiskLruCacheUtil
 	/** 网络下载图片 */
 	private boolean downloadUrlToStream(String urlString, OutputStream outputStream) {
 		HttpURLConnection urlConnection = null;
-		BufferedOutputStream out = null;
 		BufferedInputStream in = null;
 		try {
 			final URL url = new URL(urlString);
 			urlConnection = (HttpURLConnection) url.openConnection();
-			in = new BufferedInputStream(urlConnection.getInputStream(), 1024);
-			byte[] byteData = readStream(in);
-			Bitmap suitableBitmap = getSuitableBitmap(byteData);
-			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream, 1024);
-			if(suitableBitmap != null){
-				suitableBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bufferedOutputStream);
+			//urlConnection.setConnectTimeout(2500);
+			//urlConnection.setReadTimeout(2500);
+			if(urlConnection.getResponseCode() == 200){
+				in = new BufferedInputStream(urlConnection.getInputStream(), 1024);
+				byte[] byteData = readStream(in);
+				Bitmap suitableBitmap = getSuitableBitmap(byteData);
+				BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream, 1024);
+				if(suitableBitmap != null){
+					suitableBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bufferedOutputStream);
+				}
+				return true;
 			}
-
-			/*out = new BufferedOutputStream(outputStream, 1024);
-			int b;
-			while ((b = in.read()) != -1) {
-			    out.write(b);
-			}*/
-			return true;
+			return false;
 		} catch (final Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -146,9 +144,6 @@ public final class DiskLruCacheUtil
 				urlConnection.disconnect();
 			}
 			try {
-				if (out != null) {
-					out.close();
-				}
 				if (in != null) {
 					in.close();
 				}
