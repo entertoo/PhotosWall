@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu May 04 17:33:17 CST 2017
+#Thu May 04 17:55:59 CST 2017
 2.base=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_
 5.file=/Users/haoping/Desktop/master/rxjava/PhotoesWallDemo-master/app/build/intermediates/res/resources-debug.ap_/resources.arsc
 5.set=ANDROID_RESOURCE

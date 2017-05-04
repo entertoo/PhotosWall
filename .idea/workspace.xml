@@ -12,6 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4fef3666-1e0d-4028-8621-0f425035c928" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/MainActivity.java" />
     </list>
     <ignored path="PhotoesWallDemo-master.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,17 +47,17 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+            <state relative-caret-position="384">
+              <caret line="95" column="31" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
               <folding>
                 <element signature="e#1486#1552#0" expanded="true" />
                 <element signature="e#1577#1646#0" expanded="true" />
                 <element signature="e#1728#2202#0" expanded="true" />
                 <element signature="e#2201#2202#0" expanded="true" />
-                <element signature="e#2748#3243#0" expanded="true" />
-                <element signature="e#3088#3232#0" expanded="true" />
-                <element signature="e#3231#3232#0" expanded="true" />
-                <element signature="e#3242#3243#0" expanded="true" />
+                <element signature="e#2748#3248#0" expanded="true" />
+                <element signature="e#3093#3237#0" expanded="true" />
+                <element signature="e#3236#3237#0" expanded="true" />
+                <element signature="e#3247#3248#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,18 +66,8 @@
       <file leaf-file-name="DiskLruCache.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/utils/DiskLruCache.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="899" column="37" selection-start-line="899" selection-start-column="37" selection-end-line="899" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="34">
+              <caret line="883" column="13" selection-start-line="883" selection-start-column="13" selection-end-line="883" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -85,8 +76,8 @@
       <file leaf-file-name="PhotosWallAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/PhotosWallAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+            <state relative-caret-position="390">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1850,8 +1841,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/utils/DiskLruCacheUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/utils/ImageLoader.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/MainActivity.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2402,10 +2393,10 @@
             <element signature="e#1577#1646#0" expanded="true" />
             <element signature="e#1728#2202#0" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
-            <element signature="e#2748#3243#0" expanded="true" />
-            <element signature="e#3088#3232#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
+            <element signature="e#2748#3248#0" expanded="true" />
+            <element signature="e#3093#3237#0" expanded="true" />
+            <element signature="e#3236#3237#0" expanded="true" />
+            <element signature="e#3247#3248#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2477,10 +2468,10 @@
             <element signature="e#1577#1646#0" expanded="true" />
             <element signature="e#1728#2202#0" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
-            <element signature="e#2748#3243#0" expanded="true" />
-            <element signature="e#3088#3232#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
+            <element signature="e#2748#3248#0" expanded="true" />
+            <element signature="e#3093#3237#0" expanded="true" />
+            <element signature="e#3236#3237#0" expanded="true" />
+            <element signature="e#3247#3248#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2530,10 +2521,10 @@
             <element signature="e#1577#1646#0" expanded="true" />
             <element signature="e#1728#2202#0" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
-            <element signature="e#2748#3243#0" expanded="true" />
-            <element signature="e#3088#3232#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
+            <element signature="e#2748#3248#0" expanded="true" />
+            <element signature="e#3093#3237#0" expanded="true" />
+            <element signature="e#3236#3237#0" expanded="true" />
+            <element signature="e#3247#3248#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2659,16 +2650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/PhotosWallAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2706,35 +2687,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/utils/DiskLruCache.java">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="899" column="37" selection-start-line="899" selection-start-column="37" selection-end-line="899" selection-end-column="37" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/utils/DiskLruCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="883" column="13" selection-start-line="883" selection-start-column="13" selection-end-line="883" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/PhotosWallAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/photoswalldemo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
+        <state relative-caret-position="384">
+          <caret line="95" column="31" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
           <folding>
             <element signature="e#1486#1552#0" expanded="true" />
             <element signature="e#1577#1646#0" expanded="true" />
             <element signature="e#1728#2202#0" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
-            <element signature="e#2748#3243#0" expanded="true" />
-            <element signature="e#3088#3232#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
+            <element signature="e#2748#3248#0" expanded="true" />
+            <element signature="e#3093#3237#0" expanded="true" />
+            <element signature="e#3236#3237#0" expanded="true" />
+            <element signature="e#3247#3248#0" expanded="true" />
           </folding>
         </state>
       </provider>

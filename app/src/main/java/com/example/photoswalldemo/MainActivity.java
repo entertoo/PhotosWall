@@ -93,7 +93,8 @@ public class MainActivity extends Activity
 
 		new Thread(new Runnable() {
 			@Override
-			public void run() {mDownloadImageListUtil.setDuRegex(true);
+			public void run() {
+				mDownloadImageListUtil.setDuRegex(true);
 				String regex = DownloadImageListUtil.regex[2];
 				String word = mImageWords[i];
 				url = BASE_URL + URLEncoder.encode(word);
