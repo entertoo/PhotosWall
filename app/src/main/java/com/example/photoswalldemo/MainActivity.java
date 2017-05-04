@@ -17,7 +17,7 @@ public class MainActivity extends Activity
 {
 
 	private static final String BASE_URL = "https://image.baidu.com/search/index?ct=201326592&cl=2&st=-1&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&rps=1&pv=&fm=rs8&word=";
-	private String[] mImageWords = { "小清新美女", "大鱼海棠官方壁纸", "天空之城", "千与千寻", "清新美女", "美女壁纸" };
+	private String[] mImageWords = { "小清新美女", "天空之城", "千与千寻", "清新美女", "美女壁纸" };
 	private static String url = BASE_URL + URLEncoder.encode("");
 	private static int page = 0;
 
@@ -61,7 +61,6 @@ public class MainActivity extends Activity
 				final int numColumns = (int) Math.floor(mPhotoWallView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
 				if (numColumns > 0) {
 					int columnWidth = (mPhotoWallView.getWidth() / numColumns) - mImageThumbSpacing;
-					System.out.println("columnWidth: " + columnWidth);
 					mPhotoWallAdapter.setItemSize(columnWidth);
 					mPhotoWallView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 				}
@@ -79,10 +78,15 @@ public class MainActivity extends Activity
 
 	public void add(View view){
 		page++;
-		if(page > mImageWords.length){
+		if(page >= mImageWords.length){
 			page = page % mImageWords.length;
 		}
 		getImageListFromNet(page);
+	}
+
+	public void clear(View view){
+		mImageUrlList.clear();
+		mPhotoWallAdapter.notifyDataSetChanged();
 	}
 
 	private void getImageListFromNet(final int i) {
@@ -115,7 +119,7 @@ public class MainActivity extends Activity
 		super.onDestroy();
 		// 退出程序时结束所有的下载任务
 		mPhotoWallAdapter.mImageLoader.cancelAllTasks();
-		mPhotoWallAdapter.mImageLoader.stopCache();
+		mPhotoWallAdapter.mImageLoader.deleteCache();
 	}
 
 }

@@ -124,6 +124,16 @@ public final class ImageLoader {
         }
     }
 
+    public void deleteCache(){
+        if(mDiskLruCache != null){
+            try {
+                mDiskLruCache.delete();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * 获取缓存大小
      */

@@ -14,11 +14,21 @@
         android:verticalSpacing="@dimen/image_thumbnail_spacing" />
 
     <Button
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="add"
         android:text="add pic" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/add"
+        android:onClick="clear"
+        android:text="clear pic" />
 
 </RelativeLayout>

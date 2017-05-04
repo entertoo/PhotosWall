@@ -94,6 +94,15 @@ public final class DiskLruCacheUtil
 		}
 	}
 
+	/** 删除缓存 */
+	public void doDelete() {
+		try {
+			diskLruCache.delete();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/** 获取缓存地址 */
 	public File getDiskCacheDir(Context context, String uniqueName) {
 		String cachePath;
