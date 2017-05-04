@@ -1,5 +1,5 @@
-# PhotosWallDemo
-一个简单的图片墙，结合DiskLruCache、LruCache技术达到三级缓存目的，对DiskLruCache进行封装，使用更方便。另外采用网页爬虫对百度图片进行抓取。
+# PhotosWall
+图片墙，结合DiskLruCache、LruCache技术达到三级缓存目的，对DiskLruCache进行封装，使用更方便。另外采用网页爬虫对百度图片进行抓取。
 
 ![](imgs/1.png)
 
