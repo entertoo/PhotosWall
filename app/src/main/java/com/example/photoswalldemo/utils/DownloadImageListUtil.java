@@ -19,14 +19,14 @@ import java.util.regex.Pattern;
  */
 public class DownloadImageListUtil
 {
-	private boolean isBaiduRegex;
+	private boolean isDuRegex;
 
-	public void setBaiduRegex(boolean isBaiduRegex) {
-		this.isBaiduRegex = isBaiduRegex;
+	public void setDuRegex(boolean isBaiduRegex) {
+		this.isDuRegex = isBaiduRegex;
 	}
 
 	// 规则0、1是普通图片规则，2是百度图片规则
-	public static String[] regexs = { "\\b(http://){1}[^\\s]+?(\\.jpg){1}\\b",
+	public static String[] regex = { "\\b(http://){1}[^\\s]+?(\\.jpg){1}\\b",
 			"<img\\b[^>]*\\bsrc\\b\\s*=\\s*('|\")?([^'\"\n\r\f>]+(\\.jpg)\\b)[^>]*>", "\"objURL\":\"(.*?)\"" };
 
 	// 把图片地址从HTML文件中解析出来
@@ -38,7 +38,7 @@ public class DownloadImageListUtil
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(html);
 			String group;
-			if (isBaiduRegex) {
+			if (isDuRegex) {
 				while (matcher.find()) {
 					group = matcher.group(1);
 					if (!TextUtils.isEmpty(group)) {
@@ -63,7 +63,7 @@ public class DownloadImageListUtil
 		try {
 			URL img_Url = new URL(url);
 			HttpURLConnection connection = (HttpURLConnection) img_Url.openConnection();
-			connection.setConnectTimeout(10000);
+			connection.setConnectTimeout(2500);
 			connection.setRequestMethod("GET");
 			int responseCode = connection.getResponseCode();
 

@@ -12,24 +12,15 @@ import com.example.photoswalldemo.utils.DownloadImageListUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author haopi
- * @创建时间 2016年8月7日 下午8:46:34
- * @描述 照片墙主活动，使用GridView展示照片墙。
- * 
- * @修改提交者 $Author$
- * @提交时间 $Date$
- * @当前版本 $Rev$
- * 
- */
 public class MainActivity extends Activity
 {
+	private static final String url = "https://image.baidu.com/search/index?ct=201326592&cl=2&st=-1&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&rps=1&pv=&fm=rs13&word=%E5%A4%B4%E5%83%8F%20%E5%A5%B3%E7%94%9F&oriquery=%E8%90%8C%E5%A5%B3&ofr=%E8%90%8C%E5%A5%B3&hs=2";
 
 	/** 用于展示照片墙的GridView */
 	private GridView mPhotoWallView;
 
 	/** GridView的适配器 */
-	private PhotoesWallAdapter mPhotoWallAdapter;
+	private PhotosWallAdapter mPhotoWallAdapter;
 
 	private int mImageThumbSize;
 	private int mImageThumbSpacing;
@@ -65,16 +56,21 @@ public class MainActivity extends Activity
 				final int numColumns = (int) Math.floor(mPhotoWallView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
 				if (numColumns > 0) {
 					int columnWidth = (mPhotoWallView.getWidth() / numColumns) - mImageThumbSpacing;
-					mPhotoWallAdapter.setItemSize(columnWidth, columnWidth * 2, columnWidth * 2, columnWidth);
+					System.out.println("columnWidth: " + columnWidth);
+					mPhotoWallAdapter.setItemSize(columnWidth);
 					mPhotoWallView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 				}
 			}
 		});
 	}
+	public int dp2px(float dp) {
+		float scale = this.getResources().getDisplayMetrics().density;
+		return (int) (dp * scale + 0.5f);
+	}
 
 	public void initData() {
 		if (mPhotoWallAdapter == null) {
-			mPhotoWallAdapter = new PhotoesWallAdapter(this, 0, mImageUrlList, mPhotoWallView);
+			mPhotoWallAdapter = new PhotosWallAdapter(this,mImageUrlList, mPhotoWallView);
 		}
 		mPhotoWallView.setAdapter(mPhotoWallAdapter);
 		getImageListFromNet();
@@ -87,14 +83,9 @@ public class MainActivity extends Activity
 	private void getImageListFromNet() {
 		new Thread(new Runnable() {
 			@Override
-			public void run() {
-				String url = "http://image.baidu.com/search/index?ct=201326592&cl=2&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&pv=&fm=rs7&ofr=%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87&oriquery=%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87&word=%E6%A8%A1%E7%89%B9";
-				mDownloadImageListUtil.setBaiduRegex(true);
-				String regex = DownloadImageListUtil.regexs[2];
+			public void run() {mDownloadImageListUtil.setDuRegex(true);
+				String regex = DownloadImageListUtil.regex[2];
 				final ArrayList<String> imageUrlList = mDownloadImageListUtil.ParseHtmlToImgList(url, regex);
-				System.out.println("--------------------------------");
-				System.out.println("mImageUrlList: " + imageUrlList);
-
 				runOnUiThread(new Runnable() {
 					public void run() {
 						mImageUrlList.addAll(imageUrlList);
@@ -108,7 +99,7 @@ public class MainActivity extends Activity
 	@Override
 	protected void onPause() {
 		super.onPause();
-		mPhotoWallAdapter.mImageLoader.fluchCache();
+		mPhotoWallAdapter.mImageLoader.flushCache();
 	}
 
 	@Override
