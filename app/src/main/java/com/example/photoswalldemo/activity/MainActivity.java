@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 
 	private static final String BASE_URL = "https://image.baidu.com/search/index?ct=201326592&cl=2&st=-1&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&rps=1&pv=&fm=rs8&word=";
 	private String[] mImageWords = { "小清新美女", "天空之城", "千与千寻", "清新美女", "美女壁纸" };
-	private static String url = BASE_URL + URLEncoder.encode("");
+	private static String url;
 	private static int page = 0;
 
 	/** 用于展示照片墙的GridView */
